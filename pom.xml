@@ -31,6 +31,9 @@
 		<module>shiro</module>
 		<module>shiro-2</module>
 		<module>webFlux</module>
+		<module>springboot-mybatis-druid-atomikos</module>
+		<module>springboot-mybatis-druid-atomikos-fluent</module>
+		<module>springboot-mybatis-druid-atomikos-vertx</module>
 	</modules>
 
 	<dependencies>
