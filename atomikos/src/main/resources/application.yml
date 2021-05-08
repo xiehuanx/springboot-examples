@@ -1,0 +1,7 @@
+logging:
+  level:
+    root: info
+    com.atomikos: debug
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.xa.DruidXADataSource

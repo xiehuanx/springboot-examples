@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PermissionMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.example.demo.entity.Permission">
+		<id column="id" property="id" />
+		<result column="pid" property="pid" />
+		<result column="name" property="name" />
+		<result column="type" property="type" />
+		<result column="state" property="state" />
+		<result column="sort" property="sort" />
+		<result column="url" property="url" />
+		<result column="perm_code" property="permCode" />
+		<result column="icon" property="icon" />
+		<result column="description" property="description" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+
+
+	<select id="findPermissionListByUserId" parameterType="Long" resultMap="BaseResultMap">
+		select * from permission where id in (
+		select pid from role_permission where rid in (select rid from user_role where uid = #{value})
+		) and type = 1
+	</select>
+
+	<select id="findMenuListByUserId" parameterType="Long" resultMap="BaseResultMap">
+		select * from permission where id in (
+		select pid from role_permission where rid in (select rid from user_role where uid = #{value})
+		) and type = 0 ORDER BY sort asc
+	</select>
+
+	<!-- 传入用户ID和父级ID 查询出目录子菜单 -->
+	<select id="findUserMenuListType1" parameterType="com.example.demo.entity.Permission" resultMap="BaseResultMap">
+		select * from permission where id in (
+		select pid from role_permission where rid in (select rid from user_role where uid = #{id})
+		) and type = 1 and pid = #{pid} order by sort
+	</select>
+
+</mapper>
