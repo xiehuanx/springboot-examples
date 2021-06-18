@@ -69,9 +69,9 @@ public class contooler {
 
     @PostConstruct
     public void demo() {
-        kafkaConsumer.subscribe(Collections.singletonList("topic1"));
-        ConsumerGroup consumerGroup = new ConsumerGroup(4, kafkaConsumer);
-        consumerGroup.execute();
+//        kafkaConsumer.subscribe(Collections.singletonList("topic1"));
+//        ConsumerGroup consumerGroup = new ConsumerGroup(4, kafkaConsumer);
+//        consumerGroup.execute();
     }
 
 }
